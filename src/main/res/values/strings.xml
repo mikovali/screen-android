@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings_mode_title">Keep screen on</string>
+
+    <string name="notifications_mode_content_title">Screen is on</string>
+    <string name="notifications_mode_content_text">Tab to disable</string>
+
+</resources>

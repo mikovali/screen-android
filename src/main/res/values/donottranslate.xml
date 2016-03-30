@@ -3,4 +3,6 @@
 
     <string name="app_label">Screen</string>
 
+    <string name="settings_key_mode">mode</string>
+
 </resources>
