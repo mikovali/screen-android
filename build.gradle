@@ -29,7 +29,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 23
 
-        applicationId 'io.github.mikovali.android.boilerplate'
+        applicationId 'io.github.mikovali.screen.android'
         versionCode Integer.parseInt(appVersionCode)
         versionName appVersionName
     }
