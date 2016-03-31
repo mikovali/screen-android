@@ -2,8 +2,8 @@ package io.github.mikovali.screen.android;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
@@ -25,14 +25,11 @@ public class ScreenModeService extends Service {
     private View view;
 
     private void showNotification() {
-        final Intent intent = new Intent(this, Activity.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
         final Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(getString(R.string.notifications_mode_content_title))
                 .setContentText(getString(R.string.notifications_mode_content_text))
-                .setContentIntent(pendingIntent)
+                .setContentIntent(ScreenModeToggleService.createPendingIntent(this))
                 .setLocalOnly(true)
                 .setOngoing(true)
                 .build();
@@ -90,5 +87,9 @@ public class ScreenModeService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public static Intent createIntent(Context context) {
+        return new Intent(context, ScreenModeService.class);
     }
 }

@@ -1,6 +1,8 @@
 package io.github.mikovali.screen.android;
 
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
@@ -32,5 +34,10 @@ public class ScreenModeToggleService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public static PendingIntent createPendingIntent(Context context) {
+        return PendingIntent.getService(context, 0,
+                new Intent(context, ScreenModeToggleService.class), 0);
     }
 }

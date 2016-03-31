@@ -11,6 +11,22 @@ import android.widget.RemoteViews;
 
 public class WidgetProvider extends AppWidgetProvider {
 
+    // must be same as in the manifest
+    public static final String ACTION_APPWIDGET_UPDATE
+            = "io.github.mikovali.screen.android.action.APPWIDGET_UPDATE";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (ACTION_APPWIDGET_UPDATE.equals(intent.getAction())) {
+            final int[] appWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+            if (appWidgetIds != null && appWidgetIds.length > 0) {
+                onUpdate(context, AppWidgetManager.getInstance(context), appWidgetIds);
+            }
+        } else {
+            super.onReceive(context, intent);
+        }
+    }
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         final SharedPreferences preferences = PreferenceManager
@@ -20,8 +36,7 @@ public class WidgetProvider extends AppWidgetProvider {
         final int drawableRes = mode
                 ? R.drawable.ic_brightness_high_40dp
                 : R.drawable.ic_brightness_auto_40dp;
-        final PendingIntent pendingIntent = PendingIntent.getService(context, 0,
-                new Intent(context, ScreenModeToggleService.class), 0);
+        final PendingIntent pendingIntent = ScreenModeToggleService.createPendingIntent(context);
 
         for (final int appWidgetId : appWidgetIds) {
             final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);

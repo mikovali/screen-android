@@ -24,13 +24,12 @@ public class Application extends android.app.Application
             final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
             final int[] ids = appWidgetManager.getAppWidgetIds(
                     new ComponentName(this, WidgetProvider.class));
-            final Intent widgetIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            final Intent widgetIntent = new Intent(WidgetProvider.ACTION_APPWIDGET_UPDATE);
             widgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
             sendBroadcast(widgetIntent);
 
             // notify service
-            final Intent serviceIntent = new Intent(this, ScreenModeService.class);
-            startService(serviceIntent);
+            startService(ScreenModeService.createIntent(this));
         }
     }
 }
