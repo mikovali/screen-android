@@ -27,11 +27,11 @@ dependencies {
 
 android {
     buildToolsVersion '24.0.0 rc2'
-    compileSdkVersion 23
+    compileSdkVersion 'android-N'
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion 'N'
+        targetSdkVersion 'N'
 
         applicationId 'io.github.mikovali.screen.android'
         versionCode Integer.parseInt(appVersionCode)
