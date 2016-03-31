@@ -9,9 +9,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_label"
         android:theme="@style/Theme.App"
-        android:name=".Application">
+        android:name=".Application"
+        android:supportsRtl="true">
 
-        <activity android:name=".Activity" />
+        <activity android:name=".Activity"
+            android:exported="true" />
 
         <activity-alias
             android:name="LauncherActivity"
@@ -22,8 +24,18 @@
             </intent-filter>
         </activity-alias>
 
-        <service android:name=".Service"
+        <service android:name=".ScreenModeService"
             android:exported="false" />
+        <service android:name=".ScreenModeToggleService"
+            android:exported="false" />
+
+        <receiver android:name=".WidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget" />
+        </receiver>
 
     </application>
 

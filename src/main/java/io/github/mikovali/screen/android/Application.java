@@ -1,5 +1,7 @@
 package io.github.mikovali.screen.android;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
@@ -18,8 +20,17 @@ public class Application extends android.app.Application
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (TextUtils.equals(key, getString(R.string.settings_key_mode))) {
-            final Intent intent = new Intent(this, Service.class);
-            startService(intent);
+            // notify widgets
+            final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+            final int[] ids = appWidgetManager.getAppWidgetIds(
+                    new ComponentName(this, WidgetProvider.class));
+            final Intent widgetIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            widgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+            sendBroadcast(widgetIntent);
+
+            // notify service
+            final Intent serviceIntent = new Intent(this, ScreenModeService.class);
+            startService(serviceIntent);
         }
     }
 }

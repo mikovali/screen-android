@@ -3,6 +3,7 @@ package io.github.mikovali.screen.android;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
@@ -15,7 +16,7 @@ import android.view.WindowManager;
 
 import static io.github.mikovali.screen.android.Constants.NOTIFICATION_MODE_ON;
 
-public class Service extends android.app.Service {
+public class ScreenModeService extends Service {
 
     private NotificationManager notificationManager;
     private WindowManager windowManager;
