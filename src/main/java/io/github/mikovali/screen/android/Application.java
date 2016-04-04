@@ -7,8 +7,8 @@ import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
 
-public class Application extends android.app.Application
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class Application extends android.app.Application implements
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     public void onCreate() {
