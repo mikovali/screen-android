@@ -6,4 +6,9 @@
     <string name="notifications_mode_content_title">Screen is on</string>
     <string name="notifications_mode_content_text">Tab to disable</string>
 
+    <string name="overlay_permission_text">
+        Drawing over other apps functionality is needed in order to keep the screen on.
+    </string>
+    <string name="overlay_permission_action">Settings</string>
+
 </resources>

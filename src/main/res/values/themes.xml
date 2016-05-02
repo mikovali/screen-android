@@ -2,7 +2,15 @@
 <resources>
 
     <style name="Theme.App" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14</item>
+        <item name="preferenceTheme">@style/App.PreferenceThemeOverlay</item>
+    </style>
+
+    <style name="App.PreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14">
+        <item name="preferenceFragmentStyle">@style/App.PreferenceFragment</item>
+    </style>
+
+    <style name="App.PreferenceFragment" parent="PreferenceFragment">
+        <item name="android:layout">@layout/fragment</item>
     </style>
 
 </resources>

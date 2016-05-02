@@ -53,7 +53,9 @@ public class ScreenModeService extends Service {
     }
 
     private void hideView() {
-        windowManager.removeView(view);
+        if (view != null) {
+            windowManager.removeView(view);
+        }
     }
 
     @Override
@@ -62,9 +64,6 @@ public class ScreenModeService extends Service {
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        showNotification();
-        showView();
     }
 
     @Override
@@ -77,7 +76,10 @@ public class ScreenModeService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final boolean mode = preferences.getBoolean(getString(R.string.settings_key_mode), false);
-        if (!mode) {
+        if (mode) {
+            showNotification();
+            showView();
+        } else {
             stopSelf();
         }
         return START_STICKY;

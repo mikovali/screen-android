@@ -20,6 +20,13 @@ public class Application extends android.app.Application implements
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (TextUtils.equals(key, getString(R.string.settings_key_mode))) {
+            if (sharedPreferences.getBoolean(key, false) && !SettingsCompat.canDrawOverlays(this)) {
+                // if no permissions then set back to false
+                final SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(key, false);
+                editor.apply();
+                return;
+            }
             // notify widgets
             final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
             final int[] ids = appWidgetManager.getAppWidgetIds(
